@@ -1,7 +1,17 @@
 services:
   - type: web
-    name: dashboard-salud-mental
+    name: dash-salud-mental
     env: python
+    region: oregon
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: gunicorn app:app.server
+
+    envVars:
+      PYTHON_VERSION: 3.12
+
+    autoDeploy: true
+
+    healthCheckPath: /
